@@ -2,15 +2,14 @@
 
 import pandas as pd
 import numpy as np
-
-import tensorflow as tf
-from tensorflow import keras, data
+import random
 
 import time
 
 import os
 
 SEED = 123
+random.seed(SEED)
 
 # %%
 
@@ -164,7 +163,7 @@ checker = 0
 
 for dirpath, dirnames, filenames in os.walk(work_path):
 
-    for file in filenames:
+    for file in filenames[0:100]:
         path = os.path.join(dirpath, file)
 
         ticker = file.split('.')[0]
@@ -213,11 +212,12 @@ stock_shapes_df[0].value_counts()
 
 start_time = time.time()
 
-work_path = os.path.dirname(os.path.abspath(__file__)) + '\stock_data\stocks'
+work_path = os.path.dirname(os.path.abspath(__file__)) + '\\stock_data\\stocks'
+print(work_path)
 
-# from 1990-01-02 to 2019-12-31
+# from 1990-01-01 to 2020-01-01
 STOCK_SHAPE = (7559,1)
-DATE_RANGES = ["1990-01-02","2019-12-31"]
+DATE_RANGES = ["1990-01-01","2020-01-01"] # last date in df is 2019-12-31
 
 stock_dict = {}
 suitable_stocks = 0
@@ -236,10 +236,12 @@ for dirpath, dirnames, filenames in os.walk(work_path):
 
         if STOCK_SHAPE == stock_dict[ticker].shape:
             suitable_stocks += 1
+            
             check_time = time.time()
             if suitable_stocks % 100 == 0:
                 print(f'Suitable: {suitable_stocks} | Deleted: {deleted_stocks} ... {round(check_time - start_time, 3)} seconds')
             # print('Found one! ', stock_dict[ticker].shape)
+                
         else:
             stock_dict.pop(ticker)
             deleted_stocks += 1
@@ -272,9 +274,18 @@ stocks_df = pd.DataFrame.from_dict(stock_dict, orient='index', columns=col_names
 # %%
 
 stocks_df = pd.DataFrame()
+print(stocks_df.empty)
+
+# %%
+
 
 for key, value in stock_dict.items():
-    stocks_df[key] = value
+    
+    if stocks_df.empty == True:
+        stocks_df[key] = value
+    else:        
+        stocks_df = stocks_df.merge(value, on='Date')
+        
 
 # %%
 
@@ -289,5 +300,8 @@ stocks_df.shape
 stocks_df.tail()
 # %%
 
-stocks_df.to_csv('stocks_df_19900102_20191230')
+stocks_df.to_csv('stocks_df_19900102_20191231')
 # %%
+
+# %%
+
