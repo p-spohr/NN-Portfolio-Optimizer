@@ -2,42 +2,45 @@
 
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 
 import random
 
+# setting the seed allows for reproducible results
 SEED=12345
 random.seed(SEED)
+RNG = np.random.default_rng(SEED)
 
 # %%
 
 
-equal_df = pd.read_csv('equal_portfolio_1M.csv', index_col=0)
+equal_df = pd.read_csv('portfolio_value\portfolio_equ_value_1M.csv', index_col=0)
 equal_df = equal_df.iloc[equal_df.index >= '1990-02-01']
 equal_df.index = pd.to_datetime(equal_df.index, format='%Y-%m-%d')
 equal_df.head()
 
 # %%
 
-opt_df = pd.read_csv('portfolio_value_1M.csv', index_col=0)
+opt_df = pd.read_csv('portfolio_value/portfolio_opt_value_1M.csv', index_col=0)
 opt_df.index = pd.to_datetime(opt_df.index, format='%Y-%m-%d')
 opt_df.head()
 
 # %%
 
-rfr_df = pd.read_csv('portfolio_rfr_value_1M.csv', index_col=0)
+rfr_df = pd.read_csv('portfolio_value/portfolio_opt_rfr_value_1M.csv', index_col=0)
 rfr_df.index = pd.to_datetime(rfr_df.index, format='%Y-%m-%d')
 rfr_df.head()
 
 # %%
 
-gspc_df = pd.read_csv('gspc_19900102_20191231.csv', index_col=0)
+gspc_df = pd.read_csv('portfolio_value/gspc_19900102_20191231.csv', index_col=0)
 gspc_df.index = pd.to_datetime(gspc_df.index, format='%Y-%m-%d')
 gspc_df = gspc_df.loc[gspc_df.index >= '1990-02-01']
 gspc_df.head()
 
 # %%
 
-ust_df = pd.read_csv('UST_10_rfr_update.csv', index_col=0)
+ust_df = pd.read_csv('portfolio_value/ust_10_rfr_19900102_20191231.csv', index_col=0)
 ust_df.index = pd.to_datetime(ust_df.index, format='%Y-%m-%d')
 ust_df = ust_df.loc[ust_df.index >= '1990-02-01']
 ust_df.head()
@@ -73,58 +76,60 @@ normalized_rfr_portfolio_value = normalized_rfr_portfolio_value.groupby(pd.Group
 
 # %%
 
-fig, ax = plt.subplots(1,1)
+##### line chart of normalized portfolio values #####
 
-plt.plot(normalized_gspc_portfolio_value, label='gspc')
-plt.plot(normalized_equal_portfolio_value, label='equal')
-plt.plot(normalized_opt_portfolio_value, label='opt')
-plt.plot(normalized_rfr_portfolio_value, label='rfr')
+fig, ax = plt.subplots(4,1)
 
-plt.legend()
+plt.figure(figsize=[10,7])
+
+fig.suptitle("Normalized Portfolio Values from 1990 to 2019")
+
+ax[0].plot(normalized_gspc_portfolio_value, label='gspc', color='purple', linewidth=1)
+ax[0].legend()
+ax[0].set_xticks([])
+
+ax[1].plot(normalized_equal_portfolio_value, label='equal', color='blue', linewidth=1)
+ax[1].legend()
+ax[1].set_xticks([])
+ax[1].set_yticks([])
+
+ax[2].plot(normalized_opt_portfolio_value, label='opt', color='orange', linewidth=1)
+ax[2].legend()
+ax[2].set_xticks([])
+ax[2].set_yticks([])
+
+ax[3].plot(normalized_rfr_portfolio_value, label='opt_rfr', color='green', linewidth=1)
+ax[3].legend()
+ax[3].set_yticks([])
+ax[3].set_xlabel('Years')
+
+fig.savefig("results_imgs/Normalized Portfolio Values from 1990 to 2019")
 
 
 # %%
 
-print(normalized_gspc_portfolio_value.std())
-print(normalized_equal_portfolio_value.std())
-print(normalized_opt_portfolio_value.std())
-print(normalized_rfr_portfolio_value.std())
+print('SUM OF PORTFOLIO MONTHLY RETURNS')
+print(f'RFR: {round(rfr_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change().sum(), 4)}')
+print(f'OPT: {round(opt_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change().sum(), 4)}')
+print(f'EQU: {round(equal_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change().sum(), 4)}')
+print(f'GSPC: {round(gspc_df.groupby(pd.Grouper(freq="M")).mean().pct_change().sum().loc["Close"], 4)}')
 
-# %%
+print('-' * 40)
 
-rfr_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change() - ust_df.groupby(pd.Grouper(freq="M")).mean()['rfr']
+print('SHARPE RATIOS PORTFOLIO TOTAL WITHOUT RFR')
+print(f'RFR: {round(rfr_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change().sum() / rfr_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change().std(), 4)}')
+print(f'OPT: {round(opt_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change().sum() / opt_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change().std(), 4)}')
+print(f'EQUAL: {round(equal_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change().sum() / equal_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change().std(), 4)}')
+print(f'GSPC: {round((gspc_df.groupby(pd.Grouper(freq="M")).mean().pct_change().sum() / gspc_df.groupby(pd.Grouper(freq="M")).mean().pct_change().std()).loc["Close"], 4)}')
 
-# %%
+print('-' * 40)
 
-(rfr_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change() - ust_df.groupby(pd.Grouper(freq="M")).mean()['rfr']).sum() / rfr_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change().std()
+print('SHARPE RATIOS PORTFOLIO MONTHLY MEAN WITHOUT RFR')
 
-# %%
-
-
-print(f'RFR return: {rfr_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change().sum()}')
-print(f'OPT rate return: {opt_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change().sum()}')
-print(f'EQU return: {equal_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change().sum()}')
-print(f'GSPC return: {gspc_df.groupby(pd.Grouper(freq="M")).mean().pct_change().sum()}')
-
-print('-' * 10)
-
-print('SHARPE RATIOS TOTAL')
-print(f'RFR: {rfr_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change().sum() / rfr_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change().std()}')
-print(f'OPT: {opt_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change().sum() / opt_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change().std()}')
-print(f'EQUAL: {equal_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change().sum() / equal_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change().std()}')
-print(f'GSPC: {gspc_df.groupby(pd.Grouper(freq="M")).mean().pct_change().sum() / gspc_df.groupby(pd.Grouper(freq="M")).mean().pct_change().std()}')
-
-print('-' * 10)
-
-print('SHARPE RATIOS MONTHLY MEAN')
-
-print(f'RFR: {(rfr_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change() / rfr_df.pct_change().sum(axis=1).groupby(pd.Grouper(freq="M")).std()).mean()}')
-print(f'OPT: {(opt_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change() / opt_df.pct_change().sum(axis=1).groupby(pd.Grouper(freq="M")).std()).mean()}')
-print(f'EQU: {(equal_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change() / equal_df.pct_change().sum(axis=1).groupby(pd.Grouper(freq="M")).std()).mean()}')
-print(f'GSPC: {(gspc_df.groupby(pd.Grouper(freq="M")).mean().pct_change() / gspc_df.pct_change().groupby(pd.Grouper(freq="M")).std()).mean()}')
-
-print('-' * 10)
-
+print(f'RFR: {round((rfr_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change() / rfr_df.pct_change().sum(axis=1).groupby(pd.Grouper(freq="M")).std()).mean(), 4)}')
+print(f'OPT: {round((opt_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change() / opt_df.pct_change().sum(axis=1).groupby(pd.Grouper(freq="M")).std()).mean(), 4)}')
+print(f'EQU: {round((equal_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change() / equal_df.pct_change().sum(axis=1).groupby(pd.Grouper(freq="M")).std()).mean(), 4)}')
+print(f'GSPC: {round((gspc_df.groupby(pd.Grouper(freq="M")).mean().pct_change() / gspc_df.pct_change().groupby(pd.Grouper(freq="M")).std()).mean().loc["Close"], 4)}')
 
 # %%
 
@@ -184,5 +189,118 @@ gspc_monthly_std = gspc_df.pct_change().groupby(pd.Grouper(freq="M")).std()["Clo
 print(f'GSPC: {((gspc_monthly - ust_monthly) / gspc_std).mean()}')
 
 
+
 # %%
+
+##### get selected Nasdaq stock tickers and read stock meta data #####
+stocks_df = pd.read_csv('stocks_19900102_20191231.csv', index_col='Date')
+
+random_stock_selection = RNG.choice(stocks_df.keys(), 10)
+
+random_stocks_df = stocks_df[random_stock_selection]
+
+random_stocks_df.index = pd.to_datetime(stocks_df.index, format="%Y-%m-%d")
+
+random_stocks_tickers = list(random_stocks_df.keys())
+
+meta_data = pd.read_csv('stock_data/symbols_valid_meta.csv')
+
+##### download meta data from selected stocks #####
+
+meta_data.loc[:,['Symbol', 'Security Name', 'ETF']].set_index(meta_data['Symbol']).loc[random_stocks_tickers].to_csv('selected_stocks_meta.csv')
+
+# %%
+
+plt.subplots(1,1)
+
+plt.plot(random_stocks_df['PEP'].groupby(pd.Grouper(freq="M")).mean())
+plt.savefig(f'results_imgs/pep_monthly_price')
+plt.close()
+
+# %%
+
+def plot_monthly_price_stock(stock_prices : pd.DataFrame):
+
+    for stock in stock_prices.keys():
+        
+        plt.subplots(1,1)
+
+        plt.plot(random_stocks_df[stock].groupby(pd.Grouper(freq="M")).mean())
+        
+        plt.xlabel('Years')
+        plt.ylabel('Price USD')
+        plt.title(f'{stock} Price from 1990 to 2019')
+
+        plt.savefig(f'results_imgs/{stock}_monthly_price')
+
+        plt.close()
+
+# %%
+
+plot_monthly_price_stock(random_stocks_df)
+
+
+# %%
+
+ust_df = pd.read_csv('portfolio_value/ust_10_rfr_19900102_20191231.csv', index_col=0)
+ust_df.index = pd.to_datetime(ust_df.index, format='%Y-%m-%d')
+ust_df.head() 
+
+def get_stock_analysis(stock_prices : pd.DataFrame, rfr_df : pd.DataFrame):
+
+    for stock in stock_prices.keys():
+        
+        metrics_df = pd.DataFrame(columns=['metrics'])
+
+        price_df = pd.DataFrame()
+
+        print(f'----------{stock}----------')
+
+        price_df = stock_prices[stock]
+
+        highest_price = price_df.max()
+        highest_price_date = price_df.loc[price_df == price_df.max()].index[0]
+
+        lowest_price = price_df.min()
+        lowest_price_date = price_df.loc[price_df == price_df.min()].index[0]
+
+        total_monthly_returns = price_df.groupby(pd.Grouper(freq='M')).mean().pct_change().sum()
+
+        mean_monthly_returns = price_df.groupby(pd.Grouper(freq='M')).mean().pct_change().mean()
+
+        monthly_return = price_df.groupby(pd.Grouper(freq='M')).mean().pct_change()
+        monthly_rfr = rfr_df['rfr'].groupby(pd.Grouper(freq='M')).mean().pct_change()
+        monthly_std = price_df.pct_change().groupby(pd.Grouper(freq="M")).std()
+
+        mean_monthly_sharpe = ( (monthly_return - monthly_rfr) / monthly_std )
+
+        # for when std is zero get mean of earlier and later month
+        for i in range(len(mean_monthly_sharpe)):
+        
+            if (mean_monthly_sharpe.iloc[i] == -np.inf) or (mean_monthly_sharpe.iloc[i] == np.inf):
+                
+                new_sharpe_mean = (mean_monthly_sharpe.iloc[i-2] + mean_monthly_sharpe.iloc[i+2]) / 4
+                
+                mean_monthly_sharpe.iloc[i] = new_sharpe_mean
+
+
+        new_mean_monthly_sharpe = mean_monthly_sharpe.mean()
+
+        hp_ser = pd.Series(highest_price, index=['highest_price'])
+        hpd_ser = pd.Series(highest_price_date, index=['highest_price_date'])
+        lp_ser = pd.Series(lowest_price, index=['lowest_price'])
+        lpd_ser = pd.Series(lowest_price_date, index=['lowest_price_date'])
+        tmr_ser = pd.Series(total_monthly_returns, index=['total_monthly_returns'])
+        mmr_ser = pd.Series(mean_monthly_returns, index=['mean_monthly_returns'])
+        nmms_ser = pd.Series(new_mean_monthly_sharpe, index=['mean_monthly_sharpe'])
+
+        metrics_df['metrics'] = pd.concat([hp_ser, hpd_ser, lp_ser, lpd_ser, tmr_ser, mmr_ser, nmms_ser])
+
+        metrics_df.to_csv(f'stock_metrics/{stock}_metrics.csv')
+
+
+# %%
+        
+get_stock_analysis(random_stocks_df, ust_df)
+
 
