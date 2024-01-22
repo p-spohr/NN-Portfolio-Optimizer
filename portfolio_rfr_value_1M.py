@@ -40,7 +40,7 @@ all_portfolio_values_years_df.index = pd.to_datetime(all_portfolio_values_years_
 
 all_portfolio_values_years_df = all_portfolio_values_years_df.sort_values(by='Date')
 
-all_portfolio_values_years_df.to_csv('portfolio_rfr_value_1M.csv')
+# all_portfolio_values_years_df.to_csv('portfolio_rfr_value_1M.csv')
 
 
 # %%

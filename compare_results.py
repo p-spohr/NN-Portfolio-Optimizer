@@ -108,6 +108,17 @@ fig.savefig("results_imgs/Normalized Portfolio Values from 1990 to 2019")
 
 # %%
 
+
+gspc_df.groupby(pd.Grouper(freq="M")).last().sum(axis=1).pct_change().sum()
+
+
+# %%
+
+
+
+# %%
+
+
 print('SUM OF PORTFOLIO MONTHLY RETURNS')
 print(f'RFR: {round(rfr_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change().sum(), 4)}')
 print(f'OPT: {round(opt_df.groupby(pd.Grouper(freq="M")).mean().sum(axis=1).pct_change().sum(), 4)}')
@@ -304,3 +315,11 @@ def get_stock_analysis(stock_prices : pd.DataFrame, rfr_df : pd.DataFrame):
 get_stock_analysis(random_stocks_df, ust_df)
 
 
+# %%
+
+df = pd.read_csv('portfolio_value/portfolio_opt_rfr_value_1M.csv', index_col='Date')
+df.head()
+# %%
+
+len(df)
+# %%
