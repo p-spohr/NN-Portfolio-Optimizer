@@ -80,7 +80,8 @@ class Model:
         '''
         
         # data with returns
-        # this step doesn't make sense since the data_w_ret isn't used anywhere else except to use it's shape to build the model
+        # this step doesn't make sense since the data_w_ret isn't used anywhere else except to use it's shape to build the model 
+        # (it is included but I'm not sure how much it impacts the result)
         data_w_ret = np.concatenate([ data.values[1:], data.pct_change().values[1:] ], axis=1)
         
         # cast df into constant tensors
