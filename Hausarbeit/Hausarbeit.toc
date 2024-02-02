@@ -1,0 +1,24 @@
+\contentsline {section}{\numberline {1}Motivation}{2}{}%
+\contentsline {subsection}{\numberline {1.1}Portfolio Optimierung}{2}{}%
+\contentsline {section}{\numberline {2}Literatur}{3}{}%
+\contentsline {subsection}{\numberline {2.1}Definitionen}{3}{}%
+\contentsline {subsection}{\numberline {2.2}Literaturüberblick}{3}{}%
+\contentsline {subsection}{\numberline {2.3}Hauptliteratur}{4}{}%
+\contentsline {section}{\numberline {3}Ziele}{4}{}%
+\contentsline {subsection}{\numberline {3.1}Grenzen und Vermutungen}{4}{}%
+\contentsline {subsection}{\numberline {3.2}Hauptziele}{5}{}%
+\contentsline {section}{\numberline {4}Daten}{5}{}%
+\contentsline {subsection}{\numberline {4.1}Daten und Quellen}{5}{}%
+\contentsline {subsection}{\numberline {4.2}Überblick der zehn beliebigen Aktien}{6}{}%
+\contentsline {section}{\numberline {5}Methoden}{7}{}%
+\contentsline {subsection}{\numberline {5.1}Künstliches Neuronales Netz}{7}{}%
+\contentsline {subsection}{\numberline {5.2}Long Short-Term Memory}{8}{}%
+\contentsline {subsection}{\numberline {5.3}Softmax-Funktion}{9}{}%
+\contentsline {subsection}{\numberline {5.4}Sharpe-Quotient}{10}{}%
+\contentsline {subsection}{\numberline {5.5}Struktur der zwei Modelle}{10}{}%
+\contentsline {subsection}{\numberline {5.6}Monatliche Portfoliowerte}{11}{}%
+\contentsline {section}{\numberline {6}Ergebnisse}{12}{}%
+\contentsline {subsection}{\numberline {6.1}Portfoliowerte und Renditen von 1990 bis 2020}{12}{}%
+\contentsline {subsection}{\numberline {6.2}Sharpe-Quotienten}{12}{}%
+\contentsline {subsection}{\numberline {6.3}Fazit und Weiterentwicklung}{12}{}%
+\contentsline {section}{Literaturverzeichnis}{13}{}%
