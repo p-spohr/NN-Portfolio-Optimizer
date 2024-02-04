@@ -9,12 +9,25 @@ style=numeric,
 sorting=nyt,
 defernumbers=false
 ]{biblatex}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor= black,
+    filecolor=black,      
+    urlcolor=black,
+    pdftitle={NN Portfolio Optimierung},
+    pdfpagemode=FullScreen,
+    citecolor=black,
+    linktoc=all,
+    pdfnewwindow=true,
+    pageanchor=true,
+    }
 
 \graphicspath{ {./imgs/} }
 
 \addbibresource{Literaturverzeichnis.bib}
 
-\title{NN Portfolio Optimizer}
+\title{NN Portfolio Optimierung}
 \date{09. Februar 2024}
 \author{Patrick Spohr}
 \linespread{1.5} 
@@ -73,12 +86,12 @@ defernumbers=false
 
     \end{titlepage}
 
-    \tableofcontents
+    \hypertarget{inhalt}{\tableofcontents}
+
     \newpage
 
-
-    \section{Motivation}
-
+    \newpage \section{Motivation} 
+    
         \subsection{Portfolio Optimierung}
             
             Stellen Sie sich eine Situation vor, wobei man vielversprechende Wertpapiere fand, 
@@ -87,7 +100,8 @@ defernumbers=false
             Am Anfang würden die einzelnen Wertpapiere geprüft, indem man Erfahrungen und Beobachtungen erwäge. 
             Danach würde man mit dieser Information ein Portfolio aufbauen. 
             Die einfachste Lösung ist die Wertpapiere mit einem Gleichgewicht versehen und 
-            alles unter Fach und Dach zu bringen und warum nicht, die Wertpapiere sind gut, aber das ändert das Portfolio um ein Vielfaches.
+            alles unter Fach und Dach zu bringen und warum nicht, die Wertpapiere sind gut, 
+            aber das ändert das Portfolio um ein Vielfaches.
             Die Volatilität jeder neuen Wertpapiere trägt zu dem Portfolio bei und
             anschließend würde das Risiko des Portfolios erhöhen oder verringern und das könnte die Wünsche der Anleger widersprechen. 
             In Modern Portfolio Theory (MPT) sollte die steigende Volatilität eine entsprechende Rendite erwirtschaften. 
@@ -104,7 +118,7 @@ defernumbers=false
             werden die optimierten Portfolios mit einem gleichgewichten Portfolio und 
             einem Vergleichsindex verglichen, weil die Leistung eines Portfolios ohne einen Maßstab keine konkrete Folgerung ergibt.
 
-    \section{Literatur}
+    \newpage \section{Literatur}
 
         \subsection{Definitionen}
 
@@ -132,7 +146,8 @@ defernumbers=false
             heißt ''Deep Learning for Portfolio Optimization'' \cite{zhang2020}. 
             Ich erkläre diese Studie ausführlicher im nächsten Teil, denn es gibt Unterschiede, 
             die ich mit meinem Projekt gegenüberstellen will. TensorFlow \cite{tensorflow2016} und 
-            dessen Keras API \cite{chollet2015} ermöglichte das künstliche neuronale Netz und gab mir die Gelegenheit alles schnell zu erschaffen. 
+            dessen Keras API \cite{chollet2015-keras} ermöglichte das künstliche neuronale Netz und 
+            gab mir die Gelegenheit alles schnell zu erschaffen. 
             Andere Literatur war hilfreich alles zu verstehen, besonders mit den Begriffen künstliches neuronales Netz \cite{bishop1995}
             und Long Short-Term Memory von Hochreiter und Schmidhuber, die das Verfahren initiierten.
 
@@ -157,21 +172,8 @@ defernumbers=false
             Wegen dieser Berücksichtigung wurde zumindest ein Monat lang gewartet, 
             bis die Gewichte des Portfolios wieder optimieret wurden.
 
-    \section{Ziele}
-
-        \subsection{Grenzen und Vermutungen}
+    \newpage \section{Ziele}
     
-            Wie ich gerade erwähnt habe, wird das Portfolio nur mit Aktien aufgebaut. 
-            Angesichts dieser Bedingung schränke ich den Umfang des Portfolios weiter, 
-            um zu verständlichen Schlüssen zu führen. Zuerst kommen alle Aktien aus demselben Börse, NASDAQ, also nur US-Aktien. 
-            Zweitens werden die Aktien beliebig ausgewählt, die im Zeitraum 1990-2019 stetig gehandelt wurden. 
-            Von diesen Grenzen folgen die Vermutungen, dass alle Aktien schon geprüft wurden und zumindest zahlungsfähig waren,
-            weil sie für 30 Jahre auf dem Markt gehandelt wurden. 
-            Konkret bedeutet, dass die Analysten in der Lage waren, Unternehmen zu vermeiden, die bankrottgegangen waren. 
-            Das ist wichtig, weil das Modell nur funktioniert, wenn die Form die Daten gleich sind oder anders gesagt, 
-            die Anzahl der Tage auf dem Markt gleich sind. Außerdem wählte ich US-Treasury Staatsanleihen als einen RFZ, 
-            weil ich nur US-Aktien haben.
-        
         \subsection{Hauptziele}
         
             Im Folgenden gehe ich auf die Hauptziele meines Projektes. 
@@ -186,7 +188,20 @@ defernumbers=false
             dass ich nicht wusste, ob die optimierten Portfolios besser als ein gleichgewichtiges Portfolio oder 
             ein Vergleichsindex würden. Im besten Fall würden die optimierten Portfolios dem Vergleichsindex überlegen sein.
 
-    \section{Daten}
+        \subsection{Grenzen und Vermutungen}
+    
+            Wie ich gerade erwähnt habe, wird das Portfolio nur mit Aktien aufgebaut. 
+            Angesichts dieser Bedingung schränke ich den Umfang des Portfolios weiter, 
+            um zu verständlichen Schlüssen zu führen. Zuerst kommen alle Aktien aus demselben Börse, NASDAQ, also nur US-Aktien. 
+            Zweitens werden die Aktien beliebig ausgewählt, die im Zeitraum 1990-2019 stetig gehandelt wurden. 
+            Von diesen Grenzen folgen die Vermutungen, dass alle Aktien schon geprüft wurden und zumindest zahlungsfähig waren,
+            weil sie für 30 Jahre auf dem Markt gehandelt wurden. 
+            Konkret bedeutet, dass die Analysten in der Lage waren, Unternehmen zu vermeiden, die bankrottgegangen waren. 
+            Das ist wichtig, weil das Modell nur funktioniert, wenn die Form die Daten gleich sind oder anders gesagt, 
+            die Anzahl der Tage auf dem Markt gleich sind. Außerdem wählte ich US-Treasury Staatsanleihen als einen RFZ, 
+            weil ich nur US-Aktien haben.
+        
+    \newpage \section{Daten}
             
         \subsection{Daten und Quellen}
     
@@ -243,10 +258,9 @@ defernumbers=false
             deswegen ist das Portfolio diversifiziert in dieser Hinsicht. Die Aktien in der Tabelle oben baute das Portfolio auf,
             das ich im Modell eingesetzt hatte.
 
-    \section{Methoden}
+    \newpage \section{Methoden}
 
         \subsection{Künstliches Neuronales Netz}
-
 
             Dieser Abschnitt behandelt die wichtigen Teile eines künstlichen neuronalen Netzes, 
             besonders ein Feed-Forward KNN. Das KNN hat drei Teile: 
@@ -388,6 +402,44 @@ defernumbers=false
                 
             \end{figure}
 
+
+        \subsection{Python und Keras}
+                
+            Um die Reproduzierbarkeit des Experiments zu dürfen, 
+            liste ich alle notwendige Anwendungen und Versionen in Table \ref{pl-versionen} auf.    
+            NumPy \cite{harris2020-numpy} ist wichtig für schnelle Arbeit mit Arrays und ist mit 
+            pandas \cite{reback2020-pandas} \cite{mckinney2010-pandas} verbunden, um DataFrames zu erzeugen und bearbeiten. 
+            Matplotlib \cite{hunter2007-matplotlib} lässt man einfach Grafik schaffen. 
+            Auf TensorFlow \cite{tensorflow2016} baut sich die API Keras \cite{chollet2015-keras}, damit man Python anwenden kann.
+                
+                
+            \begin{table}[htp]
+
+                \begin{center} 
+
+                \scalebox{1.2}[1.2]{
+                \begin{tabular}{ | c | c | }
+                \hline
+                \textbf{Library}    &       \textbf{Versionen} \\
+                \hline
+                python              &       3.10.13 \\ 
+                tensorflow          &       2.10.0 \\
+                numpy               &       1.26.0 \\
+                pandas              &       2.1.1 \\
+                matplotlib          &       3.8.0 \\
+                
+                \hline
+                \end{tabular}
+                }
+
+                \caption{Python und Library Versionen}
+                \label{pl-versionen}
+
+                \end{center}
+
+            \end{table}
+       
+
         \subsection{Monatliche Portfoliowerte}
 
             Um die Leistung dieses Modell zu schätzen, wurde eine Simulation durchgeführt, 
@@ -400,6 +452,7 @@ defernumbers=false
             Das simulierte monatliches Trading und damit konnten die monatlichen Renditen summiert, 
             um die Leistung des Portfolios auszuwerten.
 
+            \newpage
             \begin{Large} \[ V_p = \sum_{j=1}^{A}\sum_{i=1}^{M}P^T_{i+1} \cdot w_i \] \end{Large}
 
             \begin{multicols}{2}
@@ -421,23 +474,224 @@ defernumbers=false
             das optimierte Portfolio mit dem risikofreien Zinssatz. Nachdem die Renditen der Portfolios gerechnet wurden, 
             wurden die Sharpe-Quotienten jedes Portfolio gerechnet, um zu sehen, ob die Sharpe-Quotient jedes Portfolio maximiert wurde.
 
-
     \section{Ergebnisse}
     
         \subsection{Portfoliowerte und Renditen von 1990 bis 2020}
 
-        Hi
+            Dieser Abschnitt beschäftigt sich mit den Portfoliowerten und Portfoliorenditen, 
+            die man in diesem Experiment, besonders wenn man auf die normalisierten Portfoliowerte schaut, 
+            in die Irre führen. Bei erstem Blick auf Figure \ref{n-portfoliowerte-fig} sieht man die typische Gestalt des S\&P 500s (gspc), 
+            der und EQUAL eine ähnliche Linie folgen. Das Portfolio unten, OPT ohne RFZ (opt), 
+            hat große Schwankungen, während OPT mit RFZ (opt\_rfr) ziemlich flach aussieht. Die optimierten Portfolios, 
+            besonders OPT ohne RFZ, vielleicht keine gute Leistung gebracht -- hatte ich gedacht, 
+            weil normalerweise ein steigender Portfoliowert und eine höhere Rendite verbunden sind. 
+
+
+            \begin{figure}[ht]
+            
+                \begin{center}
+
+                    \includegraphics[scale=0.8]{normalized-portfolio-1990-2020.png}
+                    \caption{Normalisierte Portfoliowerte von 1990 bis 2020}
+                    \label{n-portfoliowerte-fig}
+        
+                \end{center}
+                
+            \end{figure}
+
+            Hier musste ich nachhaken und wichtige Fragen stellen. Was hat das Modell genau gerechnet 
+            und wie sollte die Ergebnisse rechnen und vergleichen? 
+            Das Modell ergab die durch Sharpe-Quotient optimierten monatlichen Gewichte und 
+            deswegen sollte ich die monatliche Rendite des Portfolios betrachten, weil die Vermutung steht, 
+            dass man die Portfolios jeden Monat wieder zuteilen, oder einfacherweise kauft und verkauft.
+            
+
+            \begin{figure}[ht]
+            
+                \begin{center}
+
+                    \includegraphics[scale=0.8]{summe-monatlichen-renditen-1990-2020.png}
+                    \caption{Summe monatlichen Renditen von 1990 bis 2020}
+                    \label{s-m-renditen-fig}
+        
+                \end{center}
+                
+            \end{figure}
+
+
+            In Figure \ref{s-m-renditen-fig} und Table \ref{s-m-renditen-tab} werden sich die Unterschiede zwischen den Portfolios abgehoben. 
+            Das GSPC ist EQUAL überlegen, aber hinkt den optimierten Portfolios stark hinterher. 
+            Das Portfolio mit den besten Renditen ist OPT mit RFZ und ist großer als GSPC um 6.356,17 Prozent. 
+            Die Einbeziehung vom RFZ hatte die Renditen in Höhe von 1.272,90 Prozent verbessert. 
+            Hier muss zugegeben werden, dass die Unterschiede der Portfolios in diesem Experiment wichtiger als die Rendite selbst, 
+            weil keine Handelskosten verrechnet werden und die Preise jede Aktie pro Monat gemittelt werden, 
+            deshalb verliert die Ergebnisse Genauigkeit. Die GSPC und 
+            GSPC haben fast gar keine Handelskosten im Verhältnis zu den optimierten Portfolios, 
+            aber man kann mit einigermaßen Sicherheit sagen, dass es sich lohnt, das Portfolio zu optimieren. 
+
+            In Hinsicht auf den Aktienkurs hatte ich später nicht nur den Mittelwert des Preises, 
+            sondern auch den ersten und letzten Preis jeden Monat eingesetzt, um die monatliche Rendite zu bekommen. 
+            Hier war die Ergebnisse des OPT-RFR Portfolios sogar besser, beziehungsweise 6.724,74 Prozent und 6.669,50 Prozent. 
+            Diese leichte Verbesserung gilt für das GSPC-Portfolio auch, aber ich beachte diese Ergebnisse als unverbindlich, 
+            weil ich die nicht genau untersucht und verglichen hatte. 
+            Zusammenfassend sind die Summe prozentuale Veränderung zwischen den durchschnitten Preis jeden Monat für 
+            die optimierten Portfolios viel besser als die nicht optimierten Portfolios
+
+            \begin{table}[htp]
+                \begin{center}
+                    
+                    \begin{tabular}{ | l | l | }
+
+                        \hline
+                        \textbf{Portfolio}   & \textbf{Summe Monatlichen Renditen \%} \\
+                        \hline
+                        OPT mit RFR          &      6604,73 \\            
+                        OPT ohne RFR         &      5331,83 \\
+                        EQU                  &      213,32 \\                 
+                        GSPC                 &      248,56 \\          
+                             
+                        \hline
+
+                    \end{tabular}
+                    \caption{Summe Monatlichen Renditen}
+                    \label{s-m-renditen-tab}
+                \end{center}
+            \end{table}
 
         \subsection{Sharpe-Quotienten}
 
-        Hi
+        Als der nächste Teil meiner Untersuchung wurden die Sharpe-Quotienten für jedes Portfolio ausgerechnet. 
+        Da ich zwei Modelle mit und ohne den RFZ aufgebaut hatte, 
+        fand ich es in Ordnung, die Sharpe-Quotienten für jedes Portfolio 
+        mit und ohne den RFZ zu rechnen (Table \ref{gs-sq-ohne-rfz} und Table \ref{md-sq-ohne-rfz}). 
+        Mit diesen Parametern teilte ich die Rechnungen wieder, 
+        indem ich zuerst die Summe aller Renditen durch die Standardabweichung von allen monatlichen Renditen rechnete und 
+        dann alle monatliche Sharpe-Quotienten mittelte (Table \ref{gs-sq-mit-rfz} und Table \ref{md-sq-mit-rfz}). 
+        Der Gewinner mit der höchsten Sharpe-Quotient ohne RFZ ist GSPC in beiden Fällen. 
+        Die gesamte Sharpe-Quotient des GSPC-Portfolios ist gigantisch bei 72,302 Punkten und ist nur, 
+        wenn es mit den anderen Portfolios verglichen wurden, hilfreich. 
+        Interessanterweise hat OPT mit RFZ die schlechtesten Ergebnisse, -0,0026 Punkte, 
+        selbst wenn die Gewichte des Portfolios durch die Sharpe-Quotient optimiert wurden.
 
-        \subsection{Fazit und Weiterentwicklung}
+  
+                
+        \begin{table}[htp]
+            \begin{center}
+                
+                \begin{tabular}{ | l | l | }
 
-        Hi
+                    \hline
+                    \textbf{Portfolio}   & \textbf{Monatlicher Durchschnitt} \\
+                    \hline
+                    OPT mit RFR          & 39,9735  \\          
+                    OPT ohne RFR         & 41,1696 \\
+                    EQU                  & 52,8962  \\              
+                    GSPC                 & 72,302  \\       
+                            
+                    \hline
 
+                \end{tabular}
+                \caption{Gesamtsumme der Sharpe-Quotienten ohne den Risikofreinen Zinssatz}
+                \label{gs-sq-ohne-rfz}
 
-    \newpage
+            \end{center}
+        \end{table}
+
+        \begin{table}[htp]
+            \begin{center}
+                
+                \begin{tabular}{ | l | l | }
+
+                    \hline
+                    \textbf{Portfolio}   & \textbf{Monatlicher Durchschnitt} \\
+                    \hline
+                    OPT mit RFR          & -0,0026 \\      
+                    OPT ohne RFR         & 0,0225 \\
+                    EQU                  & 0,0934 \\            
+                    GSPC                 & 1,7403 \\     
+                            
+                    \hline
+
+                \end{tabular}
+                \caption{Monatlicher Durchschnitt der Sharpe-Quotienten ohne den Risikofreinen Zinssatz}
+                \label{md-sq-ohne-rfz}
+
+            \end{center}
+        \end{table}
+
+        Aber, als früher erwähnt, die Sharpe-Quotient ohne den RFZ ist falsch angewendet. 
+        Es war mir eine Überraschung, wie viel die Ergebnisse sich umgekehrt hatten. 
+        Hier hatte GSPC die schlechtesten Ergebnisse in beiden Fällen. 
+        Die Sharpe-Quotient des GSPC-Portfolios ohne und mit den RFZ sank von 72,302 Punkten um 467,3736 Punkten auf -395,0716 Punkten, 
+        obwohl das OPT mit RFZ Portfolio nur um 9,7243 Punkten fiel. Das OPT mit RFZ Portfolio hat die beste Sharpe-Quotient, 
+        aber bei 0,08449 Punkten würde die Quotient sagen, dass die Rendite nicht genug für das Risiko wäre.
+
+        \begin{table}[htp]
+            \begin{center}
+                
+                \begin{tabular}{ | l | l | }
+
+                    \hline
+                    \textbf{Portfolio}   & \textbf{Monatlicher Durchschnitt} \\
+                    \hline
+                    OPT mit RFR          & 30,2492  \\          
+                    OPT ohne RFR         & 28,7633 \\
+                    EQU                  & -345,5259  \\              
+                    GSPC                 & -395,0716  \\       
+                            
+                    \hline
+
+                \end{tabular}
+                \caption{Gesamtsumme der Sharpe-Quotienten mit dem Risikofreinen Zinssatz}
+                \label{gs-sq-mit-rfz}
+
+            \end{center}
+        \end{table}
+
+        \begin{table}[htp]
+            \begin{center}
+                
+                \begin{tabular}{ | l | l | }
+
+                    \hline
+                    \textbf{Portfolio}   & \textbf{Monatlicher Durchschnitt} \\
+                    \hline
+                    OPT mit RFR          & 0,08449 \\      
+                    OPT ohne RFR         & 0,08034 \\
+                    EQU                  & -0,9651 \\            
+                    GSPC                 & -1,1035 \\     
+                            
+                    \hline
+
+                \end{tabular}
+                \caption{Monatlicher Durchschnitt der Sharpe-Quotienten mit dem Risikofreinen Zinssatz}
+                \label{md-sq-mit-rfz}
+
+            \end{center}
+        \end{table}
+
+        
+        \newpage \subsection{Fazit und Weiterentwicklung}
+
+        Die Ergebnisse der Portfolios lässt mich zu dem Schluss kommen, 
+        dass die Wichtigkeit von passenden Gewichten im Aktienportfolio nicht unterschätzt werden sollte. 
+        Selbst beliebig ausgewählte Aktien gute Renditen erwirtschaften könnten, wenn sie im Portfolio passend zugeteilt würden. 
+        Insgesamt hatte die Sharpe-Quotient als Verlustfunktion gut funktioniert, um die monatlichen Renditen anzusteigen, 
+        aber die Sharpe-Quotient der optimierten Portfolios, gegen alle Erwartungen, bleibt niedrig. 
+        Das RFZ im Modell ergibt viel besser monatlichen Renditen als ohne. 
+        Abschließend brachte das optimierte Portfolio mit RFR über 30 Jahre jährliche Rendite von 220,16 Prozent ein.
+
+        Dieses Projekt ergibt sich einginge Weiterentwicklungen aus. 
+        Als nächster Schritt kann man ein nicht KNN-Modell benutzen, um die Unterschiede der Ergebnisse zu untersuchen. 
+        Außerdem lässt dieses Verfahren sich skalieren und könnte mit mehr als 10 Aktien benutzt wird. 
+        Ein Modell mit nur zehn Aktien wird oft bei einer Aktie übernommen, 
+        aber bei erster Probe wird die Allokationen des Portfolios mehr verteilt, als die Anzahl der Aktien größer war. 
+        Vielleicht hätte das Modell unter Over-Fitting gelitten, weil fünfzig Epochen zu viel wären, 
+        deswegen kann man die Hyperparameter des Modelles verfeinern. 
+        Das gilt auch für die Struktur des Modelles und hier kann man mehr LSTM-Schichten hinzufügen oder 
+        die Anzahl die Einheiten in der LSTM-Schicht ändern.
+    
+    
     \printbibliography[heading=bibintoc, title={Literaturverzeichnis}]
 
 

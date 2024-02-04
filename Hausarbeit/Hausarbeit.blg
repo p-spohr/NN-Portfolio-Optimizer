@@ -1,15 +1,15 @@
 [0] Config.pm:307> INFO - This is Biber 2.19
 [0] Config.pm:310> INFO - Logfile is 'Hausarbeit.blg'
-[113] biber-MSWIN64:340> INFO - === 
-[145] Biber.pm:419> INFO - Reading 'Hausarbeit.bcf'
-[233] Biber.pm:979> INFO - Found 13 citekeys in bib section 0
-[247] Biber.pm:4419> INFO - Processing section 0
-[258] Biber.pm:4610> INFO - Looking for bibtex file 'Literaturverzeichnis.bib' for section 0
-[296] bibtex.pm:1713> INFO - LaTeX decoding ...
-[319] bibtex.pm:1519> INFO - Found BibTeX data source 'Literaturverzeichnis.bib'
-[401] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[401] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[401] Biber.pm:4239> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
-[401] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
-[415] bbl.pm:660> INFO - Writing 'Hausarbeit.bbl' with encoding 'UTF-8'
-[424] bbl.pm:763> INFO - Output to Hausarbeit.bbl
+[116] biber-MSWIN64:340> INFO - === 
+[158] Biber.pm:419> INFO - Reading 'Hausarbeit.bcf'
+[273] Biber.pm:979> INFO - Found 17 citekeys in bib section 0
+[288] Biber.pm:4419> INFO - Processing section 0
+[302] Biber.pm:4610> INFO - Looking for bibtex file 'Literaturverzeichnis.bib' for section 0
+[346] bibtex.pm:1713> INFO - LaTeX decoding ...
+[370] bibtex.pm:1519> INFO - Found BibTeX data source 'Literaturverzeichnis.bib'
+[488] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[489] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[489] Biber.pm:4239> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[489] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[507] bbl.pm:660> INFO - Writing 'Hausarbeit.bbl' with encoding 'UTF-8'
+[522] bbl.pm:763> INFO - Output to Hausarbeit.bbl

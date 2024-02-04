@@ -82,7 +82,7 @@ fig, ax = plt.subplots(4,1)
 
 plt.figure(figsize=[10,7])
 
-fig.suptitle("Normalized Portfolio Values from 1990 to 2019")
+fig.suptitle("Normalized Portfolio Values from 1990 to 2020")
 
 ax[0].plot(normalized_gspc_portfolio_value, label='gspc', color='purple', linewidth=1)
 ax[0].legend()
