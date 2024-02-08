@@ -80,8 +80,8 @@ class Model:
         '''
         
         # data with returns
-        # this step doesn't make sense since the data_w_ret isn't used anywhere else except to use it's shape to build the model 
-        # (it is included but I'm not sure how much it impacts the result)
+        # does the added percent returns influence the outcome? Possible change.
+        # it is included but I'm not sure how much it impacts the result
         data_w_ret = np.concatenate([ data.values[1:], data.pct_change().values[1:] ], axis=1)
         
         # cast df into constant tensors
@@ -108,8 +108,9 @@ class Model:
 
 # %%
 
-# Nasdaq stocks
-stocks_df = pd.read_csv('stocks_19900102_20191231.csv', index_col='Date')
+##### get stock data and select 10 at random #####
+    
+stocks_df = pd.read_csv('..\\Daten\\stocks_19900102_20191231.csv', index_col='Date')
 
 random_stock_selection = RNG.choice(stocks_df.keys(), 10)
 
@@ -121,9 +122,9 @@ random_stocks_df.head()
 
 # %%
 
-# risk-free rate (10-Year US Treasury)
+##### get risk-free rate (10-Year US Treasury) #####
 
-rfr_df = pd.read_csv('UST_10_rfr_update.csv', index_col='Date')
+rfr_df = pd.read_csv("..\\Daten\\ust_10_rfr_19900102_20191231.csv", index_col='Date')
 rfr_df.index = pd.to_datetime(rfr_df.index, format="%Y-%m-%d")
 rfr_df.head()
 
@@ -131,6 +132,7 @@ rfr_df.head()
 # %%
 
 ##### create dictionary with keys as years and values as monthly prices #####
+# iterate over each month of every year
 
 start_time = time.time()
 
@@ -158,20 +160,7 @@ end_time = time.time()
 
 print(f'Total Runtime: {round(end_time - start_time, 3)} seconds')
 print(stocks_years_dict.keys())
-print(stocks_years_dict[2000][0].shape)
-
-# %%
-
-stocks_years_dict[1990][3].index
-
-rfr_df.index
-# %%
-
-rfr_df['rfr'].iloc[rfr_df['rfr'].index == stocks_years_dict[1990][3].index]
-
-# %%
-
-rfr_df.loc[stocks_years_dict[1991][3].index]
+print(stocks_years_dict[2000][0].shape) # January 2000
 
 
 # %%
@@ -200,13 +189,6 @@ for year, month_list in stocks_years_dict.items():
 
 print(f'Total Runtime: {round(end_time - start_time, 3)} seconds') # 836.705 seconds
 
-# %%
-
-stocks_years_dict[1990][1]
-
-# %%
-
-allocations_dict[2001][9]
 
 # %%
 
@@ -225,7 +207,8 @@ for year, allo_list in allocations_dict.items():
 
         allocations_year_df[month_column] = month_allocation
 
-    allocations_year_df.to_csv(os.path.join('allocations_rfr','1M', f'{year}_monthly_allocations.csv'))
+    # save file
+    # allocations_year_df.to_csv(os.path.join('allocations_rfr','1M', f'{year}_monthly_allocations.csv'))
 
 
 

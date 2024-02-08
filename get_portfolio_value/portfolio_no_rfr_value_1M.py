@@ -21,7 +21,7 @@ random.seed(SEED)
 
 ##### download all csv and combine into one #####
 
-work_path = "C:\\Users\\pat_h\\OneDrive\\Desktop\\public-repos\\NN-Portfolio-Optimizer\\portfolio_value\\1M"
+work_path = "..\\portfolio_values\\portfolio_no_rfr_value\\1M"
 
 portfolio_values_years_list = []
 
@@ -40,11 +40,13 @@ all_portfolio_values_years_df.index = pd.to_datetime(all_portfolio_values_years_
 
 all_portfolio_values_years_df = all_portfolio_values_years_df.sort_values(by='Date')
 
+# save file
 # all_portfolio_values_years_df.to_csv('portfolio_value_1M.csv')
 
 
 # %%
 
+# load data from csv
 # all_portfolio_values_years_df = pd.read_csv('portfolio_value_1M.csv', index_col=0)
 # all_portfolio_values_years_df.index = pd.to_datetime(all_portfolio_values_years_df.index, format='%Y-%m-%d')
 # all_portfolio_values_years_df = all_portfolio_values_years_df.sort_values(by='Date')
@@ -117,28 +119,3 @@ all_monthly_returns_df.head()
 
 all_monthly_pct_sr = all_monthly_returns_df.sum(axis=1)
 
-# %%
-all_monthly_pct_sr.sum(axis=0)
-
-# %%
-
-initial_investment = 10000
-monthly_investment = 100
-total_monthly_investment = 0
-portfolio_value = 0
-
-for pct_return in all_monthly_pct_sr:
-    
-    portflio_value = initial_investment
-
-    monthly_gainloss = (portflio_value + monthly_investment) * pct_return
-
-    portfolio_value += monthly_gainloss
-
-    total_monthly_investment += monthly_investment
-   
-   
-print(portfolio_value)
-print(total_monthly_investment)
-
-# %%

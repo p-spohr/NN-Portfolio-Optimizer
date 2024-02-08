@@ -21,7 +21,7 @@ random.seed(SEED)
 
 ##### download all csv and combine into one #####
 
-work_path = "C:\\Users\\pat_h\\OneDrive\\Desktop\\public-repos\\NN-Portfolio-Optimizer\\portfolio_rfr_value\\1M"
+work_path = "..\\portfolio_values\\portfolio_rfr_value\\1M"
 
 portfolio_values_years_list = []
 
@@ -40,19 +40,17 @@ all_portfolio_values_years_df.index = pd.to_datetime(all_portfolio_values_years_
 
 all_portfolio_values_years_df = all_portfolio_values_years_df.sort_values(by='Date')
 
+# save file
 # all_portfolio_values_years_df.to_csv('portfolio_rfr_value_1M.csv')
-
 
 # %%
 
-# all_portfolio_values_years_df = pd.read_csv('portfolio_value_1M.csv', index_col=0)
+# read from Daten csv
+# all_portfolio_values_years_df = pd.read_csv('..\\portfolio_values\\portfolio_opt_rfr_value_1M.csv', index_col=0)
 # all_portfolio_values_years_df.index = pd.to_datetime(all_portfolio_values_years_df.index, format='%Y-%m-%d')
 # all_portfolio_values_years_df = all_portfolio_values_years_df.sort_values(by='Date')
 
 
-# %%
-
-all_portfolio_values_years_df.head()
 
 # %%
 
@@ -69,6 +67,8 @@ def normalize_prices(prices_df : pd.DataFrame):
 
 
 # %%
+
+##### create array of all monthly returns #####
 
 monthly_returns_list = []
 grouped_month_df = pd.DataFrame()
@@ -90,9 +90,9 @@ for year_key in set(all_portfolio_values_years_df.index.year):
             monthly_returns_list.append(portfolio_return)
 
 
-
-pd.DataFrame(monthly_returns_list[0]).transpose()
 # %%
+
+##### put returns in df #####
 
 all_monthly_returns_df = pd.DataFrame()
 
@@ -110,17 +110,12 @@ for port_return in monthly_returns_list:
 
 
 # %%
-        
-all_monthly_returns_df.head()
-
-# %%
 
 all_monthly_pct_sr = all_monthly_returns_df.sum(axis=1)
 
 # %%
-all_monthly_pct_sr.sum(axis=0)
 
-# %%
+##### small experiment #####
 
 initial_investment = 10000
 monthly_investment = 100

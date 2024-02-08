@@ -13,27 +13,26 @@ RNG = np.random.default_rng(SEED)
 
 # %%
 
-
-equal_df = pd.read_csv('portfolio_value\portfolio_equ_value_1M.csv', index_col=0)
+equal_df = pd.read_csv('..\\portfolio_values\\portfolio_equ_value_1M.csv', index_col=0) # equal weights
 equal_df = equal_df.iloc[equal_df.index >= '1990-02-01']
 equal_df.index = pd.to_datetime(equal_df.index, format='%Y-%m-%d')
 equal_df.head()
 
 # %%
 
-opt_df = pd.read_csv('portfolio_value/portfolio_opt_value_1M.csv', index_col=0)
+opt_df = pd.read_csv('..\\portfolio_values\\portfolio_opt_value_1M.csv', index_col=0) # no risk-free rate
 opt_df.index = pd.to_datetime(opt_df.index, format='%Y-%m-%d')
 opt_df.head()
 
 # %%
 
-rfr_df = pd.read_csv('portfolio_value/portfolio_opt_rfr_value_1M.csv', index_col=0)
+rfr_df = pd.read_csv('..\\portfolio_values\\portfolio_opt_rfr_value_1M.csv', index_col=0) # with risk-free rate
 rfr_df.index = pd.to_datetime(rfr_df.index, format='%Y-%m-%d')
 rfr_df.head()
 
 # %%
 
-gspc_df = pd.read_csv('portfolio_value/gspc_19900102_20191231.csv', index_col=0)
+gspc_df = pd.read_csv('..\\Daten\\gspc_19900102_20191231.csv', index_col=0) # benchmark S&P 500
 gspc_df.index = pd.to_datetime(gspc_df.index, format='%Y-%m-%d')
 gspc_df = gspc_df.loc[gspc_df.index >= '1990-02-01']
 gspc_df.head()
@@ -103,14 +102,8 @@ ax[3].legend()
 ax[3].set_yticks([])
 ax[3].set_xlabel('Years')
 
-fig.savefig("results_imgs/Normalized Portfolio Values from 1990 to 2019")
-
-
-# %%
-
-
-gspc_df.groupby(pd.Grouper(freq="M")).last().sum(axis=1).pct_change().sum()
-
+# save file
+# fig.savefig("results_imgs/Normalized Portfolio Values from 1990 to 2019")
 
 # %%
 
@@ -204,7 +197,8 @@ print(f'GSPC: {((gspc_monthly - ust_monthly) / gspc_std).mean()}')
 # %%
 
 ##### get selected Nasdaq stock tickers and read stock meta data #####
-stocks_df = pd.read_csv('stocks_19900102_20191231.csv', index_col='Date')
+
+stocks_df = pd.read_csv('..//Daten//stocks_19900102_20191231.csv', index_col='Date')
 
 random_stock_selection = RNG.choice(stocks_df.keys(), 10)
 
@@ -218,15 +212,9 @@ meta_data = pd.read_csv('stock_data/symbols_valid_meta.csv')
 
 ##### download meta data from selected stocks #####
 
-meta_data.loc[:,['Symbol', 'Security Name', 'ETF']].set_index(meta_data['Symbol']).loc[random_stocks_tickers].to_csv('selected_stocks_meta.csv')
+# save file
+# meta_data.loc[:,['Symbol', 'Security Name', 'ETF']].set_index(meta_data['Symbol']).loc[random_stocks_tickers].to_csv('selected_stocks_meta.csv')
 
-# %%
-
-plt.subplots(1,1)
-
-plt.plot(random_stocks_df['PEP'].groupby(pd.Grouper(freq="M")).mean())
-plt.savefig(f'results_imgs/pep_monthly_price')
-plt.close()
 
 # %%
 
@@ -248,12 +236,15 @@ def plot_monthly_price_stock(stock_prices : pd.DataFrame):
 
 # %%
 
-plot_monthly_price_stock(random_stocks_df)
+# save plots of individual stock prices
+# plot_monthly_price_stock(random_stocks_df)
 
 
 # %%
 
-ust_df = pd.read_csv('portfolio_value/ust_10_rfr_19900102_20191231.csv', index_col=0)
+##### create stock metrics for individual stocks #####
+
+ust_df = pd.read_csv('..\\Daten\\ust_10_rfr_19900102_20191231.csv', index_col=0)
 ust_df.index = pd.to_datetime(ust_df.index, format='%Y-%m-%d')
 ust_df.head() 
 
@@ -311,15 +302,7 @@ def get_stock_analysis(stock_prices : pd.DataFrame, rfr_df : pd.DataFrame):
 
 
 # %%
-        
-get_stock_analysis(random_stocks_df, ust_df)
 
+# save stock metrics as csv    
+# get_stock_analysis(random_stocks_df, ust_df)
 
-# %%
-
-df = pd.read_csv('portfolio_value/portfolio_opt_rfr_value_1M.csv', index_col='Date')
-df.head()
-# %%
-
-len(df)
-# %%
