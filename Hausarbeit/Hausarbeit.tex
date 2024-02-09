@@ -55,7 +55,13 @@ defernumbers=false
         \vspace{2mm}
         \\ 09. Februar 2024
 
-        \vspace{30mm}
+        \vspace{4mm}
+
+        \centering
+        \large Code
+        \\ \normalsize \textit{https://github.com/p-spohr/NN-Portfolio-Optimizer}
+
+        \vspace{20mm}
 
         \centering
         \large Masterstudiengang
@@ -98,13 +104,14 @@ defernumbers=false
             aber er weiß nicht, wie sie in Portfolio zugeteilt werden dürfen. 
             Markowitz \cite{markowitz1952} zufolge habe das Verfahren, um Portfolio aufzubauen, zwei Schritte. 
             Am Anfang würden die einzelnen Wertpapiere geprüft, indem man Erfahrungen und Beobachtungen erwäge. 
-            Danach würde man mit dieser Information ein Portfolio aufbauen. 
+            Danach baue man mit dieser Information ein Portfolio auf. 
             Die einfachste Lösung ist die Wertpapiere mit einem Gleichgewicht versehen und 
             alles unter Fach und Dach zu bringen und warum nicht, die Wertpapiere sind gut, 
             aber das ändert das Portfolio um ein Vielfaches.
             Die Volatilität jeder neuen Wertpapiere trägt zu dem Portfolio bei und
             anschließend würde das Risiko des Portfolios erhöhen oder verringern und das könnte die Wünsche der Anleger widersprechen. 
             In Modern Portfolio Theory (MPT) sollte die steigende Volatilität eine entsprechende Rendite erwirtschaften. 
+            Studien zeigten, dass 90 Prozent der Renditen eines Portfolios dem 'Allocation Policy' zuschreiben würde \cite{reilly2022}.
 
             Nun komme ich zu dem Hauptteil meiner Untersuchung. 
             Mit dem zweiten Schritt von Markowitz fange ich an, nämlich, geprüfte Wertpapiere in einem Portfolio zuzuteilen. 
@@ -112,7 +119,7 @@ defernumbers=false
             dann sollten sie zugeteilt werden, indem ein künstliches neuronales Netz und
             ein Long Short-Term Memory Layer mit der Sharpe-Quotient als Verlustfunktion eingesetzt wird. 
             Lassen Sie mich diese Begriffe und das Modell, mit dem ich die Gewichte der Aktien gerechnet habe, 
-            in der Überschrift ''Methoden'' erklären.
+            in der Überschrift 'Methoden' erklären.
 
             Im Fazit, um die Leistungen die Portfolios zu verstehen, 
             werden die optimierten Portfolios mit einem gleichgewichten Portfolio und 
@@ -126,7 +133,7 @@ defernumbers=false
             Künstliches Neuronales Netz oder KNN sind nicht-lineare Algorithmen, 
             die den Neuronen im Gehirn nachempfunden sind. 
             Die Gestalt aller KNN hat eine Eingangsschicht, 
-            oft mehrere verborgenen Schichten und ein Ausgangsschicht \cite{bishop1995}. 
+            eine oder mehrere verborgenen Schichten und ein Ausgangsschicht \cite{bishop1995}. 
             Die verborgene Schicht in meinem KNN heißt Long Short-Term Memory oder
             LSTM. Man bezeichnet LSTM als eine Technik zur Verbesserung eines rekurrenten neuronalen Netzes,
             indem es um eine Art Erinnerung an frühere Erfahrungen verfügt, 
@@ -134,43 +141,44 @@ defernumbers=false
             Die Verlustfunktion im KNN misst den Fehler zwischen eine Beobachtung und eine Schätzung einer Regression oder einer Klassifikation. 
             Die Sharpe-Quotient, die ich als Verlustfunktion benutzte, 
             ist eine Kennzahl, die die Rendite zur Volatilität eines Portfolios zeigt \cite{sharpe1994}. 
-            Zu guter Letzt ist der Risikofreier Zinssatz (Risk-Free Rate) oder RFZ,
-            der in der Sharpe-Quotient eingesetzt wird, ein Referenzzinssatz, 
-            der theoretisch kein Ausfallrisiko enthält. Es gibt einige RFZ, die zur Verfügung stehen,
-            und ich erläutere, den ich benutzte und warum.
+            Zu guter Letzt ist der Risikofreier Zinssatz (risk-free rate, RFR) oder RFZ ein Referenzzinssatz,
+            der in der Sharpe-Quotient eingesetzt wird und theoretisch kein Ausfallrisiko enthält. 
+            Es gibt einige RFZ, die zur Verfügung stehen. Ich erläutere später den ich benutzte und warum.
         
         \subsection{Literaturüberblick}
         
-            Ich bespreche kurz die Literatur, die mein Projekt leiteten. 
+            Ich bespreche kurz die Literatur, von der mein Projekt abgeleitet wurde. 
             Die Hauptliteratur, von der ich die Idee und das Modell weiterentwickelte, 
-            heißt ''Deep Learning for Portfolio Optimization'' \cite{zhang2020}. 
+            heißt ''Deep Learning for Portfolio Optimization'' \cite{zhang2020} von Zhang, Zohren und Roberts. 
             Ich erkläre diese Studie ausführlicher im nächsten Teil, denn es gibt Unterschiede, 
             die ich mit meinem Projekt gegenüberstellen will. TensorFlow \cite{tensorflow2016} und 
-            dessen Keras API \cite{chollet2015-keras} ermöglichte das künstliche neuronale Netz und 
+            dessen Keras API \cite{chollet2015-keras} ermöglichten das künstliche neuronale Netz und 
             gab mir die Gelegenheit alles schnell zu erschaffen. 
-            Andere Literatur war hilfreich alles zu verstehen, besonders mit den Begriffen künstliches neuronales Netz \cite{bishop1995}
-            und Long Short-Term Memory von Hochreiter und Schmidhuber, die das Verfahren initiierten.
+            Andere Literatur war hilfreich alles zu verstehen, 
+            besonders mit den Begriffen künstliches neuronales Netz \cite{bishop1995}
+            und Long Short-Term Memory \cite{hochreiter1997} von Hochreiter und Schmidhuber, die das Verfahren initiierten.
 
         \subsection{Hauptliteratur}
         
-            Im Anschluss daran werde ich auf die wichtigen Unterschiede zwischen meinem Projekt 
-            und der Studie von Zhang et al. \cite{zhang2020} hinweisen. 
+            Im Anschluss daran weise ich auf die wichtigen Unterschiede zwischen meinem Projekt 
+            und der Studie von Zhang et al. \cite{zhang2020} hin. 
             Der größte Unterschied war die Auswahl von Wertpapieren, 
             weil sie Indexfonds oder Exchange-Traded Funds (ETFs) statt Aktien auswählten. 
             Ein Portfolio mit ETFs von Aktien und Anleihen zeigt meines Erachtens die Kraft von diesem KNN-Modell nicht, 
             weil ETFs schon relativ diversifiziert und nicht volatil sind. 
             Ich wollte sehen, wie ein langfristiges Portfolio von einzelnen Aktien, 
-            rücksichtslos ihre erwarteten Renditen, optimiert wird. Indexfonds erwirtschaftet in der Regel positive Rendite, 
-            denn sie den Markt folgen und wirkt als eine sehr konservative Probe in diesem Experiment.
+            rücksichtslos ihre erwarteten Renditen, optimiert wird. Populärer Indexfonds erwirtschaftet in der Regel 
+            positive Rendite, denn sie den Markt folgen und wirken als eine sehr konservative Probe in diesem Experiment.
 
             Als Nächstes stehe ich die Sharpe-Quotient im Fokus, die sie als Verlustfunktion anwendeten. 
             Sie hatten keinen risikofreien Zinssatz in ihrem Modell benutzt, während ich ein Modell mit und ohne einen aufbaute. 
             Der RFZ ist ein wichtiger Teil die Sharpe-Quotient und kann verschiedene Ergebnisse bewirken, 
-            wie in der Überschrift ''Ergebnisse'' dargestellt wird. In Hinsicht auf die Ergebnisse gibt es einen anderen Unterschied, 
-            den ich erwähnen muss, weil ich keine Handelskosten betrachte. Das lässt sich als eine wichtige Auslassung zeigen, 
-            denn die Aktien im ganzen Portfolio werden regelmäßig komplett wieder zugeteilt. 
-            Wegen dieser Berücksichtigung wurde zumindest ein Monat lang gewartet, 
-            bis die Gewichte des Portfolios wieder optimieret wurden.
+            wie in der Überschrift 'Ergebnisse' dargestellt wird. In Hinsicht auf die Ergebnisse gibt es einen anderen Unterschied, 
+            den ich erwähnen muss, weil ich keine Handelskosten betrachtete. Das lässt sich als eine wichtige Auslassung zeigen, 
+            denn die Aktien im ganzen Portfolio mussten regelmäßig komplett zugeteilt. 
+            Wegen dieser Berücksichtigung wurde zumindest ein Monat abgewartet, 
+            bis die Gewichte des Portfolios wieder optimieret werden durften, 
+            weil tägliches oder wöchentliches Trading zu viel gekostet hätte. 
 
     \newpage \section{Ziele}
     
@@ -182,18 +190,19 @@ defernumbers=false
             ohne einen RFZ optimiert. Das heißt genau, dass ich die Gewichte jeder Aktie für einen Zeitraum erzeuge. 
             Dadurch, dass ich die Portfoliowerte bekomme, multipliziere ich die Gewichte und Aktienkurs. 
             Danach werden die Leistung von den optimierten Portfolios mit einem gleichgewichtigen Portfolio und 
-            einem Vergleichsindex verglichen. 30 Jahre über kann ich die monatliche Rendite jedes Portfolio rechnen, 
+            einem Vergleichsindex verglichen. 30 Jahre über kann ich die monatlichen Renditen jedes Portfolio rechnen, 
             um die Sharpe-Quotient jedes Portfolio auszurechnen. 
-            Ich hatte keine Annahme, weil mein Projekt weit weg genug von der Hauptliteratur \cite{zhang2020}, 
+            Ich hatte am Anfang keine Annahme, weil mein Projekt weit weg genug von der Hauptliteratur \cite{zhang2020} war, 
             dass ich nicht wusste, ob die optimierten Portfolios besser als ein gleichgewichtiges Portfolio oder 
-            ein Vergleichsindex würden. Im besten Fall würden die optimierten Portfolios dem Vergleichsindex überlegen sein.
+            ein Vergleichsindex würden sein. 
+            Im besten Fall würden zumindest die optimierten Portfolios dem gleichgewichtigen Portfolio überlegen sein.
 
         \subsection{Grenzen und Vermutungen}
     
             Wie ich gerade erwähnt habe, wird das Portfolio nur mit Aktien aufgebaut. 
             Angesichts dieser Bedingung schränke ich den Umfang des Portfolios weiter, 
             um zu verständlichen Schlüssen zu führen. Zuerst kommen alle Aktien aus demselben Börse, NASDAQ, also nur US-Aktien. 
-            Zweitens werden die Aktien beliebig ausgewählt, die im Zeitraum 1990-2019 stetig gehandelt wurden. 
+            Zweitens werden die Aktien beliebig ausgewählt, die im Zeitraum von 1990 bis 2019 stetig gehandelt wurden. 
             Von diesen Grenzen folgen die Vermutungen, dass alle Aktien schon geprüft wurden und zumindest zahlungsfähig waren,
             weil sie für 30 Jahre auf dem Markt gehandelt wurden. 
             Konkret bedeutet, dass die Analysten in der Lage waren, Unternehmen zu vermeiden, die bankrottgegangen waren. 
@@ -210,21 +219,31 @@ defernumbers=false
             Ich erhaltete den täglichen Aktienpreis und Datum aus Stock Market Dataset auf Kaggle \cite{onyshchak}.
             Der Vergleichsindex ist der S\&P 500 und kommt aus Yahoo! Finance \cite{yahoo}. 
             Es ist zum Bemerken, dass der Ticker GSPC heißt. Aus dem GSPC erhaltete ich auch den täglichen Indexpreis und Datum. 
-            Zuletzt bekam ich den risikofreien Zinssatz, 10-Year US Treasury Yield, von FRED \cite{fred}. 
-            Der RFZ hat ein Datum und ein tägliches Prozent. Seltsamerweise gab ein paar Lücken im Datensatz von FRED und 
+            Zuletzt bekam ich von FRED \cite{fred} den risikofreien Zinssatz -- 'Market Yield on U.S. Treasury Securities at  
+            1-Month Constant Maturity.' Hier könnten andere RFZ angewendet werden,
+            und vielleicht hätte ein anderer besser Ergebnisse ergeben, aber ich bespreche diesen Punkt im Fazit.
+            Der RFZ hat ein Datum und ein tägliches Prozent, aber seltsamerweise gab ein paar Lücken im Datensatz von FRED und 
             ich musste deswegen die füllen, indem ich der Durchschnitt von dem frühen und nächsten Prozent rechnete. 
-            Ich denke, das beeinflusst die Ergebnisse nicht viel, weil es sich über 30 Jahren erstrecken, aber ich mitteile es trotzdem.
+            Ich denke, das beeinflusst die Ergebnisse nicht viel, weil es sich über 30 Jahren erstrecken, 
+            aber ich mitteile es trotzdem.
             
         \subsection{Überblick der zehn beliebigen Aktien}
     
             Bei den Aktien steht die Frage im Mittelpunkt, ob sie wirklich ein typisches oder realistisches Portfolio ähneln. 
             Obwohl sie beliebig ausgewählt wurden, fand ich es wichtig, 
-            die relevant Information über sie auszurechen, weil es passieren könnte, dass das Portfolio, 
+            die relevante Information über sie auszurechen, weil es passieren könnte, dass das Portfolio, 
             egal von den Gewichten, den S\&P 500 komplett übertrifft, wenn es Ausreißer wie Monster Beverage Corp (MNST) enthält, 
-            der über 150.000\% Gesamtrendite von 1990 bis 2019 einbrachte.
+            der über 162.590 Prozent Gesamtrendite von 1990 bis 2019 einbrachte. Außerdem ist die Summe aller monatlichen Renditen 1.144 Prozent.
 
             
-          
+            Aus aller beliebig ausgewählten Aktien ist SkyWest, Inc. am besten, 
+            die die Summe aller monatlichen Renditen 635,7 Prozent erwirtschaftete und
+            eine durchschnittliche monatliche Sharpe-Quotient 0,825 hatte.
+            Alle Aktien im Portfolio hatten eine durchschnittliche monatliche Sharpe-Quotient zwischen null und eins,
+            also es gibt keine außergewöhnliche Aktie. Die Aktien gehörten zu verschiedenen Industrien und
+            deswegen ist das Portfolio diversifiziert in dieser Hinsicht. Die Aktien in Table \ref{Aktien-Portfolio} bauten das Portfolio auf,
+            das ich im Modell eingesetzt hatte.
+            
             \begin{table}[htp]
                 \begin{center}
                     
@@ -246,19 +265,13 @@ defernumbers=false
                         \hline
 
                     \end{tabular}
+                    \caption{Aktien des Portfolios}
+                    \label{Aktien-Portfolio}
 
                 \end{center}
             \end{table}
 
-            Aus aller beliebig ausgewählten Aktien ist SkyWest, Inc. am besten, 
-            der die Summe aller monatlichen Renditen 635,7\% erwirtschaftete und
-            eine durchschnittliche monatliche Sharpe-Quotient 0,825 hatte.
-            Alle Aktien im Portfolio hatten eine durchschnittliche monatliche Sharpe-Quotient zwischen null und eins,
-            also es gibt keine außergewöhnliche Aktie. Die Aktien gehörten zu verschiedenen Industrien und
-            deswegen ist das Portfolio diversifiziert in dieser Hinsicht. Die Aktien in der Tabelle oben baute das Portfolio auf,
-            das ich im Modell eingesetzt hatte.
-
-    \newpage \section{Methoden}
+            \newpage \section{Methoden}
 
         \subsection{Künstliches Neuronales Netz}
 
@@ -294,7 +307,7 @@ defernumbers=false
 
             Die verborgene Schicht meines Modelles ist LSTM und ich erkläre die Wichtigkeit dieser Weiterentwicklung des KNN-Verfahrens. 
             Lassen Sie mich zuerst kurz die Schwäche vom traditionellen Feed-Forward Verfahren hervorheben. 
-            Feed-Forward KNN hat sogenannt kurze Erinnerung oder ''Short-Term Memory,''
+            Feed-Forward KNN hat sogenannt kurze Erinnerung oder 'Short-Term Memory,'
             weil die Neuronen keine Informationen über frühere Neuronen verfügen. 
             Normalerweise ist das kein Problem, weil die frühere Information keinen großen Einfluss auf die nächste Information haben. 
             Das ändert sich, wenn Zeitreihen als Eingangsdaten einfließen, 
@@ -312,12 +325,12 @@ defernumbers=false
                 
             \end{figure}
 
-            Kurz gesagt, LSTM wurde gebildet, um Back-Flow-Problemen von Feed-Forward KNN ''Short-Term Memory'' zu lindern. 
+            Kurz gesagt, LSTM wurde gebildet, um Back-Flow-Problemen von Feed-Forward KNN 'Short-Term Memory' zu lindern. 
             Dadurch, dass ich das beste Verfahren für meine Daten benutzen will, 
             wendete ich, wie meine Hauptliteratur \cite{zhang2020}, LSTM an. 
             Ich bemerke auch, dass LSTM eine Art rekurrentes neuronales Netz oder RNN ist, 
             weil die Ausgaben der früheren Neuronen erinnert werden. Im RNN heißt Back-Propagation unter einen anderen Namen: 
-            ''Back-Propagation Through Time'' oder BPTT. 
+            'Back-Propagation Through Time' oder BPTT. 
             Der Grundidee bleibt wie vor, aber das Verfahren nutzt eine Reihe von Zeitschritten mit Eingaben und Ausgaben Paare und 
             rechnet die kumulierten Fehler über jeden Zeitschritt \cite{brownlee2020}.
 
@@ -332,7 +345,7 @@ defernumbers=false
             um eine Wahrscheinlichkeitsverteilung über alle unterschiedlichen möglichen Ereignisse zu rechnen. 
             Die Funktion versichert für Klassifikation mit mehr als zwei Klassen, 
             dass die Wahrscheinlichkeit aller Klassen eins ergibt und das ist wichtig für die Gewichte der Aktien im Portfolio, 
-            weil die Summe aller Gewichte auch eins ist. Es ist sinnvoll zu erwähnen, 
+            weil die Summe aller Gewichte auch eins ist. Es ist auch sinnvoll zu vermerken, 
             dass die Softmax-Funktion der Sigmoid-Funktion ähnelt aber die Summe aller Werte in der Sigmoid-Funktion nicht eins ist.
 
             \begin{figure}[ht]
@@ -354,7 +367,7 @@ defernumbers=false
             Was sagt die Sharpe-Quotient genau? Eine Sharpe-Quotient über eins bedeutet, 
             dass das Portfolio eine Rendite mehr als der risikofreie Zinssatz erwirtschaftet und 
             deren Ergebnis großer als die Volatilität der Rendite ist. 
-            Einfacherweise wird er Anleger für das Risiko hervorragend entschädigt. 
+            Einfacherweise wird der Anleger für das Risiko hervorragend entschädigt. 
             Eine Sharpe-Quotient gleich eins zeigt, dass Renditen und Risiken in einem ausgewogenen Verhältnis stehen. 
             Unter eins zeigt eine unterdurchschnittliche Entschädigung für das entsprechende Risiko \cite{sharpe1994}.
 
@@ -383,7 +396,7 @@ defernumbers=false
         \subsection{Struktur der zwei Modelle}
 
             Ich bespreche kurz die überall Struktur der zwei Modelle, die ich benutzte, 
-            um das monatliche Gewicht für jede Aktie zu bestimmen. 
+            um das monatliche Gewicht für jede Aktie zu bestimmen. Das Struktur ist in Figure \ref{Struktur-Modell} dargestellt.
             Das erste Modell bleibt umgeändert von dem Modell in der Hauptliteratur \cite{zhang2020}. 
             Das bedeutet, dass das Modell ein RNN mit einer LSTM-Schicht mit 64 Einheiten ist. 
             Dieses erste Modell setzt keinen risikofreien Zinssatz in die Sharpe-Quotient-Verlustfunktion ein. 
@@ -396,7 +409,8 @@ defernumbers=false
                 \begin{center}
 
                     \includegraphics[scale=1]{zhang-knn.png}
-                    \caption{Long Short-Term Memory Unit \cite{zhang2020}}
+                    \caption{Struktur des Modelles \cite{zhang2020}}
+                    \label{Struktur-Modell}
         
                 \end{center}
                 
@@ -410,7 +424,8 @@ defernumbers=false
             NumPy \cite{harris2020-numpy} ist wichtig für schnelle Arbeit mit Arrays und ist mit 
             pandas \cite{reback2020-pandas} \cite{mckinney2010-pandas} verbunden, um DataFrames zu erzeugen und bearbeiten. 
             Matplotlib \cite{hunter2007-matplotlib} lässt man einfach Grafik schaffen. 
-            Auf TensorFlow \cite{tensorflow2016} baut sich die API Keras \cite{chollet2015-keras}, damit man Python anwenden kann.
+            Auf TensorFlow \cite{tensorflow2016} baut sich die API Keras \cite{chollet2015-keras} auf, 
+            damit man Python anwenden kann.
                 
                 
             \begin{table}[htp]
@@ -452,7 +467,6 @@ defernumbers=false
             Das simulierte monatliches Trading und damit konnten die monatlichen Renditen summiert, 
             um die Leistung des Portfolios auszuwerten.
 
-            \newpage
             \begin{Large} \[ V_p = \sum_{j=1}^{A}\sum_{i=1}^{M}P^T_{i+1} \cdot w_i \] \end{Large}
 
             \begin{multicols}{2}
@@ -471,8 +485,9 @@ defernumbers=false
             Insgesamt wurden vier Portfolios miteinander verglichen, 
             um die Leistungsfähigkeit des Modelles zu schätzen: S\&P 500 Vergleichsindex, 
             das gleichgewichtige Portfolio, das optimierte Portfolio ohne den risikofreien Zinssatz und 
-            das optimierte Portfolio mit dem risikofreien Zinssatz. Nachdem die Renditen der Portfolios gerechnet wurden, 
-            wurden die Sharpe-Quotienten jedes Portfolio gerechnet, um zu sehen, ob die Sharpe-Quotient jedes Portfolio maximiert wurde.
+            das optimierte Portfolio mit dem risikofreien Zinssatz. Nachdem die Renditen der Portfolios berechnet wurden, 
+            waren die Sharpe-Quotienten jedes Portfolio gerechnet worden, 
+            um zu sehen, ob die Sharpe-Quotient jedes Portfolio maximiert waren.
 
     \section{Ergebnisse}
     
@@ -483,7 +498,7 @@ defernumbers=false
             in die Irre führen. Bei erstem Blick auf Figure \ref{n-portfoliowerte-fig} sieht man die typische Gestalt des S\&P 500s (gspc), 
             der und EQUAL eine ähnliche Linie folgen. Das Portfolio unten, OPT ohne RFZ (opt), 
             hat große Schwankungen, während OPT mit RFZ (opt\_rfr) ziemlich flach aussieht. Die optimierten Portfolios, 
-            besonders OPT ohne RFZ, vielleicht keine gute Leistung gebracht -- hatte ich gedacht, 
+            besonders OPT ohne RFZ, vielleicht keine gute Leistung gebracht hatte -- dachte ich, 
             weil normalerweise ein steigender Portfoliowert und eine höhere Rendite verbunden sind. 
 
 
@@ -500,10 +515,10 @@ defernumbers=false
             \end{figure}
 
             Hier musste ich nachhaken und wichtige Fragen stellen. Was hat das Modell genau gerechnet 
-            und wie sollte die Ergebnisse rechnen und vergleichen? 
+            und wie sollte ich die Ergebnisse rechnen und vergleichen? 
             Das Modell ergab die durch Sharpe-Quotient optimierten monatlichen Gewichte und 
             deswegen sollte ich die monatliche Rendite des Portfolios betrachten, weil die Vermutung steht, 
-            dass man die Portfolios jeden Monat wieder zuteilen, oder einfacherweise kauft und verkauft.
+            dass man die Portfolios jeden Monat wieder zuteilen, oder einfacherweise, kaufen und verkaufen.
             
 
             \begin{figure}[ht]
@@ -518,6 +533,17 @@ defernumbers=false
                 
             \end{figure}
 
+            \begin{figure}[ht]
+            
+                \begin{center}
+
+                    \includegraphics[scale=0.65]{plot_allocations_30_years.png}
+                    \caption{Gemittelte Jährliche Gewichte jede Aktie im optimierten Portfolio mit dem Risikofreien Zinssatz von 1990 bis 2020}
+                    \label{g-jg-Aktie}
+        
+                \end{center}
+                
+            \end{figure}
 
             In Figure \ref{s-m-renditen-fig} und Table \ref{s-m-renditen-tab} werden sich die Unterschiede zwischen den Portfolios abgehoben. 
             Das GSPC ist EQUAL überlegen, aber hinkt den optimierten Portfolios stark hinterher. 
@@ -526,16 +552,34 @@ defernumbers=false
             Hier muss zugegeben werden, dass die Unterschiede der Portfolios in diesem Experiment wichtiger als die Rendite selbst, 
             weil keine Handelskosten verrechnet werden und die Preise jede Aktie pro Monat gemittelt werden, 
             deshalb verliert die Ergebnisse Genauigkeit. Die GSPC und 
-            GSPC haben fast gar keine Handelskosten im Verhältnis zu den optimierten Portfolios, 
+            EQUAL haben fast gar keine Handelskosten im Verhältnis zu den optimierten Portfolios, 
             aber man kann mit einigermaßen Sicherheit sagen, dass es sich lohnt, das Portfolio zu optimieren. 
+
+            Laut Rückmeldung nach meiner Präsentation sei es besser, mehr Information über die Gewichte darzustellen.
+            Am Anfang fand ich schwierig diese Gewichte zu erklären, weil sie sich so jäh und schnell änderten.
+            Meine Lösung zu diesem Problem zeigt sich in Figure \ref{g-jg-Aktie}. Diese Grafik lässt man die Entwicklung
+            über 30 Jahre blicken, selbst wenn die einen Herzmonitor ähneln. Der klare Gewinner im OPT mit RFZ war
+            Security National Financial Corporation oder SNFCA.
 
             In Hinsicht auf den Aktienkurs hatte ich später nicht nur den Mittelwert des Preises, 
             sondern auch den ersten und letzten Preis jeden Monat eingesetzt, um die monatliche Rendite zu bekommen. 
-            Hier war die Ergebnisse des OPT-RFR Portfolios sogar besser, beziehungsweise 6.724,74 Prozent und 6.669,50 Prozent. 
-            Diese leichte Verbesserung gilt für das GSPC-Portfolio auch, aber ich beachte diese Ergebnisse als unverbindlich, 
+            Hier war die Ergebnisse des OPT mit RFR Portfolios sogar besser, 
+            beziehungsweise 6.724,74 Prozent und 6.669,50 Prozent. 
+            Diese leichte Verbesserung gilt für das GSPC auch, aber ich beachte diese Ergebnisse als unverbindlich, 
             weil ich die nicht genau untersucht und verglichen hatte. 
-            Zusammenfassend sind die Summe prozentuale Veränderung zwischen den durchschnitten Preis jeden Monat für 
-            die optimierten Portfolios viel besser als die nicht optimierten Portfolios
+            Zusammenfassend sind die Summe prozentualer Veränderung zwischen den durchschnittlichen Preise jeden Monat für 
+            die optimierten Portfolios viel besser als die nicht optimierten Portfolios.
+
+            Ich möchte auch andere Betrachtigungen über den Close-Preis, den RFZ und GSPC erörtern. 
+            Der Close-Preis beinhaltet keine Dividenden oder Aktienaufteilung 
+            und man sollte deswegen den Adjusted-Close-Preis wählen, da
+            er den kompleten Zustand des Unternehmens berücksichtigt. In diesem Fall würde den GSPC nicht passend sein, 
+            weil der auch keine Dividenden oder Aktienaufteilung einrechnet. 
+            Außerdem würde es besser einen kurzfristigeren RFZ -- 
+            Market Yield on U.S. Treasury Securities at 1-Month Constant Maturity -- von FRED einsetzen,
+            weil die monatlichen Renditen gerechnet worden waren. In Table \ref{md-sq-mit-rfz} kann man sehen,
+            dass GSPC eine negative monatliche Sharpe-Quotient von -1,1035 hatte und das wegen eines höheren RFZs sein könnte.
+            
 
             \begin{table}[htp]
                 \begin{center}
@@ -560,7 +604,7 @@ defernumbers=false
 
         \subsection{Sharpe-Quotienten}
 
-        Als der nächste Teil meiner Untersuchung wurden die Sharpe-Quotienten für jedes Portfolio ausgerechnet. 
+        Als nächster Teil meiner Untersuchung wurden die Sharpe-Quotienten für jedes Portfolio ausgerechnet. 
         Da ich zwei Modelle mit und ohne den RFZ aufgebaut hatte, 
         fand ich es in Ordnung, die Sharpe-Quotienten für jedes Portfolio 
         mit und ohne den RFZ zu rechnen (Table \ref{gs-sq-ohne-rfz} und Table \ref{md-sq-ohne-rfz}). 
@@ -671,7 +715,7 @@ defernumbers=false
         \end{table}
 
         
-        \newpage \subsection{Fazit und Weiterentwicklung}
+        \subsection{Fazit und Weiterentwicklung}
 
         Die Ergebnisse der Portfolios lässt mich zu dem Schluss kommen, 
         dass die Wichtigkeit von passenden Gewichten im Aktienportfolio nicht unterschätzt werden sollte. 
@@ -681,11 +725,12 @@ defernumbers=false
         Das RFZ im Modell ergibt viel besser monatlichen Renditen als ohne. 
         Abschließend brachte das optimierte Portfolio mit RFR über 30 Jahre jährliche Rendite von 220,16 Prozent ein.
 
-        Dieses Projekt ergibt sich einginge Weiterentwicklungen aus. 
+        Dieses Projekt ergibt sich einginge Weiterentwicklungen aus. Wie früher erwähnt, kann ein anderer RFZ benutzt werden,
+        damit man genauere Sharpe-Quotienten bekommt. Vielleicht verbessert diese Änderung auch die Renditen der Portfolios.
         Als nächster Schritt kann man ein nicht KNN-Modell benutzen, um die Unterschiede der Ergebnisse zu untersuchen. 
-        Außerdem lässt dieses Verfahren sich skalieren und könnte mit mehr als 10 Aktien benutzt wird. 
+        Außerdem lässt dieses Verfahren sich skalieren und könnte mit mehr als 10 Aktien benutzt werden. 
         Ein Modell mit nur zehn Aktien wird oft bei einer Aktie übernommen, 
-        aber bei erster Probe wird die Allokationen des Portfolios mehr verteilt, als die Anzahl der Aktien größer war. 
+        aber bei erster Probe hatte sich die Allokationen eines Portfolios mehr verteilt, als die Anzahl der Aktien wuchs. 
         Vielleicht hätte das Modell unter Over-Fitting gelitten, weil fünfzig Epochen zu viel wären, 
         deswegen kann man die Hyperparameter des Modelles verfeinern. 
         Das gilt auch für die Struktur des Modelles und hier kann man mehr LSTM-Schichten hinzufügen oder 

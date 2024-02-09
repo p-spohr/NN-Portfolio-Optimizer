@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber Hausarbeit"] 1707044399 "Hausarbeit.bcf" "Hausarbeit.bbl" "Hausarbeit" 1707044798 0
-  "./Literaturverzeichnis.bib" 1707041687 6658 cc4c03b4249d56365eefdf8c903cc0a4 ""
-  "Hausarbeit.bcf" 1707044797 109530 558a071676c5e29c2d0bb292c88acfb0 "pdflatex"
+["biber Hausarbeit"] 1707482694 "Hausarbeit.bcf" "Hausarbeit.bbl" "Hausarbeit" 1707492294 0
+  "./Literaturverzeichnis.bib" 1707481401 6935 b9877c8c72e5b3c7dca6c55d1635ff38 ""
+  "Hausarbeit.bcf" 1707492293 109666 5b8ca483202be13cc238704353fc2177 "pdflatex"
   (generated)
   "Hausarbeit.bbl"
   "Hausarbeit.blg"
   (rewritten before read)
-["pdflatex"] 1707044796 "c:/Users/pat_h/OneDrive/Desktop/public-repos/NN-Portfolio-Optimizer/Hausarbeit/Hausarbeit.tex" "Hausarbeit.pdf" "Hausarbeit" 1707044798 0
+["pdflatex"] 1707492291 "c:/Users/pat_h/OneDrive/Desktop/public-repos/NN-Portfolio-Optimizer/Hausarbeit/Hausarbeit.tex" "Hausarbeit.pdf" "Hausarbeit" 1707492294 0
   "C:/Users/pat_h/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1706894002 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/pat_h/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1704533271 24224029 4f8cb72dbe152c4e49d08adf97d53ae3 ""
   "C:/Users/pat_h/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmbx12.tfm" 1136765053 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -103,16 +103,17 @@
   "C:/Users/pat_h/AppData/Local/Programs/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1657800696 9714 ba3194bd52c8499b3f1e3eb91d409670 ""
   "C:/Users/pat_h/AppData/Local/Programs/MiKTeX/tex/latex/tools/multicol.sty" 1700599895 32515 51caec75eda9c8890135f12f1a4eddc3 ""
   "C:/Users/pat_h/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "Hausarbeit.aux" 1707044797 9134 43e1ce61099bff38a7e24efa689b8155 "pdflatex"
-  "Hausarbeit.bbl" 1707044401 32291 222249023e891e621879529e37c801fb "biber Hausarbeit"
-  "Hausarbeit.out" 1707044797 3699 c4a1a11a1b52ad6f65f45cea9fcc0418 "pdflatex"
-  "Hausarbeit.run.xml" 1707044797 2357 85649d2b01a012ef0c6b911f83c9d073 "pdflatex"
-  "Hausarbeit.tex" 1707044752 37972 84506040e50285a1609522d1bfe202e5 ""
-  "Hausarbeit.toc" 1707044797 2031 062ec7cf5703627a4722bec1eabda2b7 "pdflatex"
-  "c:/Users/pat_h/OneDrive/Desktop/public-repos/NN-Portfolio-Optimizer/Hausarbeit/Hausarbeit.tex" 1707044752 37972 84506040e50285a1609522d1bfe202e5 ""
+  "Hausarbeit.aux" 1707492293 10002 1fd83c07688504c0315fab5f830f5a8b "pdflatex"
+  "Hausarbeit.bbl" 1707482698 33878 6e5444efbe35e23d435cbb12c0243775 "biber Hausarbeit"
+  "Hausarbeit.out" 1707492293 3699 c4a1a11a1b52ad6f65f45cea9fcc0418 "pdflatex"
+  "Hausarbeit.run.xml" 1707492293 2357 85649d2b01a012ef0c6b911f83c9d073 "pdflatex"
+  "Hausarbeit.tex" 1707492287 41110 df80e9c3788684876463c6ee624b6f89 ""
+  "Hausarbeit.toc" 1707492293 2032 869e823f7c9ba5512d29a449dddca10a "pdflatex"
+  "c:/Users/pat_h/OneDrive/Desktop/public-repos/NN-Portfolio-Optimizer/Hausarbeit/Hausarbeit.tex" 1707492287 41110 df80e9c3788684876463c6ee624b6f89 ""
   "imgs/lstm-yan.png" 1706888488 59514 980125eccf34f91e2f6ad9a1cec8d8fd ""
   "imgs/neuronales-netz-bishop.png" 1706886262 37816 2572515083dc45b7e772357f73615e31 ""
   "imgs/normalized-portfolio-1990-2020.png" 1707038308 46012 5880ca96fe4174dbd5c273ea8d573a7a ""
+  "imgs/plot_allocations_30_years.png" 1707417902 55356 d05d913b256421072e4a2b4318fe9e55 ""
   "imgs/sigmoid-datacamp.png" 1706888753 27959 3e3dbca1369e3f74841712cd66e78fd2 ""
   "imgs/summe-monatlichen-renditen-1990-2020.png" 1707038543 37367 48caa5b94aca22eda3812582a09d4122 ""
   "imgs/zhang-knn.png" 1706891190 67723 77bc483e374898ee510b36ef87ba35b5 ""

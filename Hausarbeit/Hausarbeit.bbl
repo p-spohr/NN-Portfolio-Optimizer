@@ -677,6 +677,44 @@
       \verb https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset
       \endverb
     \endentry
+    \entry{reilly2022}{book}{}
+      \name{author}{3}{}{%
+        {{hash=aaf106032f86ccfe1932538f433faa33}{%
+           family={Reilly},
+           familyi={R\bibinitperiod},
+           given={Frank\bibnamedelima K.},
+           giveni={F\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=a263c610c5196dd2c7bc6bf55a464302}{%
+           family={Brown},
+           familyi={B\bibinitperiod},
+           given={Keith\bibnamedelima C.},
+           giveni={K\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=0354744a776e2e4e0004d9089fd5328a}{%
+           family={Leeds},
+           familyi={L\bibinitperiod},
+           given={Sanford\bibnamedelima J.},
+           giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cengage}%
+      }
+      \strng{namehash}{28d8b6b3f5bb9d72f9a58dc19f57cc6b}
+      \strng{fullhash}{28d8b6b3f5bb9d72f9a58dc19f57cc6b}
+      \strng{bibnamehash}{28d8b6b3f5bb9d72f9a58dc19f57cc6b}
+      \strng{authorbibnamehash}{28d8b6b3f5bb9d72f9a58dc19f57cc6b}
+      \strng{authornamehash}{28d8b6b3f5bb9d72f9a58dc19f57cc6b}
+      \strng{authorfullhash}{28d8b6b3f5bb9d72f9a58dc19f57cc6b}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{11}
+      \field{isbn}{978-1-305-26299-7}
+      \field{title}{Investment Analysis \& Portfolio Management}
+      \field{year}{2022}
+      \field{pages}{44}
+      \range{pages}{1}
+    \endentry
     \entry{sharpe1994}{article}{}
       \name{author}{1}{}{%
         {{hash=7713eaeb6845785b0f6bb5cffab120d1}{%
